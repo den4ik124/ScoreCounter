@@ -1,0 +1,205 @@
+{
+  "main": {
+    "id": "e355ec7b74a324b9",
+    "type": "split",
+    "children": [
+      {
+        "id": "8ba7dae4de81ed1c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1c439ece5ea50204",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "bluetooth-remote.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "bluetooth-remote"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4d4bd9d9519c4beb",
+    "type": "split",
+    "children": [
+      {
+        "id": "6a6c80a026f22a6d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2a7f6a38553e1364",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "7d664f7506782008",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "b31c96a711a093ec",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7f5baa1e5b862a9d",
+    "type": "split",
+    "children": [
+      {
+        "id": "a3c4194f1b83cb9c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "711508fec634896a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "bluetooth-remote.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for bluetooth-remote"
+            }
+          },
+          {
+            "id": "dcb1dbad99709129",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "bluetooth-remote.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from bluetooth-remote"
+            }
+          },
+          {
+            "id": "eb47fcfb93563c0e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "488ffa05809e615e",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "ffc78c2670a1ab00",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "bluetooth-remote.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of bluetooth-remote"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "1c439ece5ea50204",
+  "lastOpenFiles": [
+    "bluetooth-remote.md",
+    "Untitled.canvas",
+    "winner-overlay.md",
+    "winner-overlay.md.tmp.4900.1777303924144",
+    "game-timer.md.tmp.4900.1777303919880",
+    "swipe-gestures.md.tmp.4900.1777303912799",
+    "README.md",
+    "score-tracking.md.tmp.4900.1777303910080",
+    "game-modes.md.tmp.4900.1777303906397",
+    "team-setup.md.tmp.4900.1777303903124",
+    "README.md.tmp.4900.1777303896633",
+    "text-to-speech.md",
+    "team-setup.md",
+    "score-tracking.md",
+    "game-timer.md",
+    "game-modes.md"
+  ]
+}
