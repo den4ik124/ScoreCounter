@@ -4,10 +4,10 @@ The primary way to interact with the scoreboard during a game. No need to aim at
 
 ## Gestures
 
-| Gesture        | Action                        |
-|----------------|-------------------------------|
-| Swipe up       | +1 point for that team        |
-| Swipe down     | Undo the last point (either panel) |
+| Gesture        | Action                              |
+|----------------|-------------------------------------|
+| Swipe up       | +1 point for that team              |
+| Swipe down     | Undo the last point (either panel)  |
 
 ## How it works
 
@@ -15,9 +15,13 @@ Each team panel occupies half the screen. A vertical drag of more than **80 px**
 
 The threshold is intentionally high enough to prevent accidental triggers from incidental touches, but low enough to feel responsive during fast play.
 
+## Visual hint
+
+Every panel permanently shows **↑ Score · ↓ Undo** at its bottom edge as a reminder of the swipe directions.
+
 ## When gestures are disabled
 
-Swipe-up is blocked once a winner has been declared. Swipe-down (undo) remains active so players can correct a mis-tap before dismissing the winner overlay.
+Swipe-up is blocked once a winner has been declared (`buttonsEnabled = false` is passed to the panel). Swipe-down (undo) is **never** gated — it remains active so players can correct a mis-tap before dismissing the winner overlay.
 
 ## See also
 

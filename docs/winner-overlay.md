@@ -1,6 +1,6 @@
 # Winner Overlay
 
-Displayed as a modal overlay on the game screen when the win condition is met.
+Displayed as a full-screen modal on the game screen when the win condition is met.
 
 ## Content
 
@@ -15,14 +15,16 @@ A team wins when it reaches the target score **and** its lead over the opponent 
 
 ## Actions
 
-| Action       | Result                                      |
-|--------------|---------------------------------------------|
-| Rematch      | Resets both scores to 0, clears history, keeps team names and target |
-| Swipe down   | Undo is still possible while the overlay is showing, to correct a mis-scored final point |
+| Action     | Result |
+|------------|--------|
+| **Rematch** | Resets both scores to 0, clears undo history, keeps team names and target score |
+| Swipe down | Undo is still possible while the overlay is showing, to correct a mis-scored final point |
 
 ## Dismissal
 
-The overlay disappears automatically if an undo removes the winning score. There is no explicit close button — the intended flow is Rematch or quit (× in top-left) back to the setup screen.
+The overlay disappears automatically if an undo removes the winning score (score returns below win condition). There is no explicit close button on the overlay itself.
+
+> **Note:** The × quit button in the top-left of the game screen is **not accessible** while the overlay is active — the overlay is a full-screen layer that captures all touch input. To exit to the setup screen the player must first tap **Rematch**, then tap ×.
 
 ## See also
 

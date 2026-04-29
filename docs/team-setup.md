@@ -2,6 +2,13 @@
 
 The first screen players see when launching the app.
 
+## Layout
+
+- A circular **volleyball glyph** icon at the top (gradient Ocean → Sunset palette)
+- App title **"Scoreboard"** and tagline **"Tap to play · Swipe to score"**
+- Two labelled input fields — TEAM A (blue dot) and TEAM B (orange dot)
+- A gradient **Continue →** button pinned to the bottom
+
 ## What it does
 
 Lets players enter custom names for Team A and Team B before starting a match. Names are optional — leaving a field blank defaults to "Team A" / "Team B".
@@ -9,7 +16,7 @@ Lets players enter custom names for Team A and Team B before starting a match. N
 ## How to use
 
 - Tap the **Team A** field and type a name (e.g. "Sharks")
-- Press **Next** on the keyboard or tap the **Team B** field
+- Press **Next** on the keyboard to jump to the Team B field
 - Type a name for Team B (e.g. "Eagles")
 - Press **Done** or tap **Continue →** to proceed
 

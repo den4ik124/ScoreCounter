@@ -7,17 +7,35 @@ Core mechanic of the game screen. Tracks points for both teams with full undo su
 - **Swipe up** on a team's panel to award that team a point
 - The serving indicator automatically moves to the team that just scored
 - Haptic feedback fires on every score change
+- Scoring is blocked once a winner has been declared
 
 ## Undoing a point
 
 - **Swipe down** on either panel to undo the last scoring action
-- The ↺ button in the top-right corner does the same thing (it is dimmed when there is nothing to undo)
+- The **↺** button in the top-right corner does the same thing (dimmed when nothing to undo)
 - Undo restores the exact previous score **and** the previous serving team
 - Multiple consecutive undos are supported — the full match history is stored
+- Undo remains available even while the winner overlay is showing
+
+## Swap serve
+
+The **Swap serve** button in the bottom action bar manually transfers the serve without changing any score. Useful when the referee calls a serve fault or after a timeout.
 
 ## Undo history
 
 Every score change saves a snapshot of `(scoreA, scoreB, servingTeam)` before the change is applied. Undo pops the most recent snapshot. The history is cleared on Reset or when starting a new game.
+
+## Panel visual indicators
+
+Each team panel updates in real time to reflect the current match state:
+
+| Indicator | When shown |
+|-----------|------------|
+| **SERVING** badge (coloured pill) | Team currently holding serve |
+| Brighter border + coloured glow | Team currently in the lead |
+| **Progress bar** (bottom of panel) | Animated fill showing progress toward the target score |
+| 🏆 trophy icon (top-right of score) | Team that has won the set |
+| **↑ Score · ↓ Undo** hint | Always visible; reminds players of the swipe direction |
 
 ## Winner detection
 
