@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "bluetooth-remote.md",
+                "file": "score-tracking.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "bluetooth-remote"
+              "title": "score-tracking"
             }
           }
         ]
@@ -185,13 +185,13 @@
   },
   "active": "1c439ece5ea50204",
   "lastOpenFiles": [
+    "README.md",
     "bluetooth-remote.md",
     "Untitled.canvas",
     "winner-overlay.md",
     "winner-overlay.md.tmp.4900.1777303924144",
     "game-timer.md.tmp.4900.1777303919880",
     "swipe-gestures.md.tmp.4900.1777303912799",
-    "README.md",
     "score-tracking.md.tmp.4900.1777303910080",
     "game-modes.md.tmp.4900.1777303906397",
     "team-setup.md.tmp.4900.1777303903124",
