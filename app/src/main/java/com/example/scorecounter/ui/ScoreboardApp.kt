@@ -24,6 +24,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.scorecounter.model.Screen
 import com.example.scorecounter.ui.screen.GameScreen
 import com.example.scorecounter.ui.screen.ModeSelectionScreen
+import com.example.scorecounter.ui.screen.SettingsScreen
 import com.example.scorecounter.ui.screen.SetupScreen
 import com.example.scorecounter.ui.theme.AppTheme
 import com.example.scorecounter.ui.theme.MidnightTheme
@@ -35,6 +36,7 @@ fun ScoreboardApp(
     speak: (String) -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val settings by viewModel.settings.collectAsStateWithLifecycle()
     val theme = MidnightTheme
 
     Surface(
@@ -57,7 +59,8 @@ fun ScoreboardApp(
                         onNext = { a, b ->
                             viewModel.setTeamNames(a, b)
                             viewModel.navigateToMode()
-                        }
+                        },
+                        onSettings = viewModel::navigateToSettings
                     )
                     Screen.MODE -> ModeSelectionScreen(
                         theme = theme,
@@ -69,12 +72,20 @@ fun ScoreboardApp(
                     Screen.GAME -> GameScreen(
                         state = state,
                         theme = theme,
+                        announcementDelayMs = settings.announcementDelayMs,
                         onAddPoint = viewModel::addPoint,
                         onUndo = viewModel::undoPoint,
                         onSwapServe = viewModel::swapServe,
                         onReset = viewModel::resetGame,
                         onQuit = viewModel::restart,
                         speak = speak
+                    )
+                    Screen.SETTINGS -> SettingsScreen(
+                        theme = theme,
+                        settings = settings,
+                        onBack = viewModel::goBack,
+                        onIncreaseDelay = viewModel::increaseAnnouncementDelay,
+                        onDecreaseDelay = viewModel::decreaseAnnouncementDelay
                     )
                 }
             }

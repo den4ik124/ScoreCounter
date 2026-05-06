@@ -1,6 +1,7 @@
 package com.example.scorecounter.ui.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,6 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.scorecounter.ui.ThemedBackground
+import com.example.scorecounter.ui.component.ChipButton
 import com.example.scorecounter.ui.component.VolleyballGlyph
 import com.example.scorecounter.ui.component.clickableNoRipple
 import com.example.scorecounter.ui.theme.AppTheme
@@ -49,7 +51,7 @@ import com.example.scorecounter.ui.theme.SpaceGrotesk
 import com.example.scorecounter.ui.theme.SunsetPalette
 
 @Composable
-fun SetupScreen(theme: AppTheme, onNext: (String, String) -> Unit) {
+fun SetupScreen(theme: AppTheme, onNext: (String, String) -> Unit, onSettings: () -> Unit) {
     var teamA by remember { mutableStateOf("") }
     var teamB by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
@@ -60,7 +62,12 @@ fun SetupScreen(theme: AppTheme, onNext: (String, String) -> Unit) {
             .padding(horizontal = 24.dp, vertical = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(Modifier.height(24.dp))
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+            ChipButton(theme = theme, onClick = onSettings) {
+                Text("⚙", fontFamily = SpaceGrotesk, fontSize = 16.sp, color = theme.fg)
+            }
+        }
+        Spacer(Modifier.height(8.dp))
 
         Box(
             modifier = Modifier
@@ -214,7 +221,7 @@ private fun TeamInputField(
 fun SetupScreenPreview() {
     ScoreCounterTheme {
         ThemedBackground(MidnightTheme) {
-            SetupScreen(theme = MidnightTheme, onNext = { _, _ -> })
+            SetupScreen(theme = MidnightTheme, onNext = { _, _ -> }, onSettings = {})
         }
     }
 }

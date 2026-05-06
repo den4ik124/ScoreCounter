@@ -77,6 +77,7 @@ private fun scoreAnnouncement(state: GameState): String =
 fun GameScreen(
     state: GameState,
     theme: AppTheme,
+    announcementDelayMs: Int = 0,
     onAddPoint: (Boolean) -> Unit,
     onUndo: () -> Unit,
     onSwapServe: () -> Unit,
@@ -99,15 +100,24 @@ fun GameScreen(
     val elapsed = ((nowMs - startTimeMs) / 1000).toInt()
     val timerText = "%02d:%02d".format(elapsed / 60, elapsed % 60)
 
-    // TTS
+    // TTS — score changes are delayed by [announcementDelayMs]; winner fires after the same
+    // delay. Score is suppressed when a winner is declared in the same update so only
+    // "X wins!" is spoken, not a redundant final score on top of it.
     var prevScores by remember { mutableStateOf(Pair(state.scoreA, state.scoreB)) }
     LaunchedEffect(state.scoreA, state.scoreB) {
-        if (prevScores != Pair(state.scoreA, state.scoreB)) {
-            speak(scoreAnnouncement(state))
-            prevScores = Pair(state.scoreA, state.scoreB)
+        val current = Pair(state.scoreA, state.scoreB)
+        if (prevScores != current) {
+            delay(announcementDelayMs.toLong())
+            if (state.winner == null) speak(scoreAnnouncement(state))
+            prevScores = current
         }
     }
-    LaunchedEffect(state.winner) { state.winner?.let { speak("$it wins!") } }
+    LaunchedEffect(state.winner) {
+        state.winner?.let {
+            delay(announcementDelayMs.toLong())
+            speak("$it wins!")
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(

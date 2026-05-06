@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.view.KeyEvent
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -57,6 +58,22 @@ class MainActivity : ComponentActivity() {
         } else {
             btPermissionLauncher.launch(perms)
         }
+    }
+
+    /**
+     * Intercepts VOLUME_UP / VOLUME_DOWN from a paired Bluetooth HID remote before the
+     * system can change the ringer volume. All volume key events are consumed so that the
+     * volume slider never appears; ACTION_DOWN with repeatCount == 0 is forwarded to the
+     * ViewModel for double-click detection and score routing.
+     */
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.keyCode == KeyEvent.KEYCODE_VOLUME_UP || event.keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            if (event.action == KeyEvent.ACTION_DOWN && event.repeatCount == 0) {
+                viewModel.onVolumeKeyDown(event.keyCode)
+            }
+            return true
+        }
+        return super.dispatchKeyEvent(event)
     }
 
     override fun onDestroy() {

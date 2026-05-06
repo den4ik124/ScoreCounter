@@ -10,10 +10,11 @@ One file per feature. Each file describes what the feature does, how it behaves,
 | [game-modes.md](game-modes.md) | Set length selection (15 / 21 / 25 / custom) |
 | [score-tracking.md](score-tracking.md) | Points, undo history, win detection |
 | [swipe-gestures.md](swipe-gestures.md) | Swipe-up to score, swipe-down to undo |
-| [bluetooth-remote.md](bluetooth-remote.md) | Physical BLE two-button scoring device |
+| [bluetooth-remote.md](bluetooth-remote.md) | Volume HID remote and custom BLE two-button device |
 | [text-to-speech.md](text-to-speech.md) | Auto-announce and on-demand score read-out |
 | [game-timer.md](game-timer.md) | Elapsed match time display |
 | [winner-overlay.md](winner-overlay.md) | Win detection, trophy overlay, rematch |
+| [settings.md](settings.md) | In-app settings screen (announcement delay) |
 
 ---
 
@@ -32,6 +33,7 @@ graph TD
     TTS["🔊 text-to-speech"]
     GT["⏱ game-timer"]
     WO["🏆 winner-overlay"]
+    ST["⚙ settings"]
 
     TS -->|leads to| GM
     GM -->|sets target · starts game| SC
@@ -44,6 +46,8 @@ graph TD
     WO -.->|disables swipe-up| SG
     WO -.->|timer keeps running| GT
     TS -.->|team names used in announcements| TTS
+    TS -->|accessible from| ST
+    ST -.->|controls delay for| TTS
 ```
 
 ### Reading the graph

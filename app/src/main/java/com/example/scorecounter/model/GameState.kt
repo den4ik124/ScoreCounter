@@ -1,6 +1,6 @@
 package com.example.scorecounter.model
 
-enum class Screen { SETUP, MODE, GAME }
+enum class Screen { SETUP, MODE, GAME, SETTINGS }
 
 data class ScoreSnapshot(val scoreA: Int, val scoreB: Int, val servingTeamA: Boolean)
 
