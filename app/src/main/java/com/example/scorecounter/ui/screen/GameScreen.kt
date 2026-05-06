@@ -34,6 +34,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -67,11 +68,13 @@ import com.example.scorecounter.ui.theme.SunsetPalette
 import com.example.scorecounter.ui.theme.TeamPalette
 import kotlinx.coroutines.delay
 
-private fun scoreAnnouncement(state: GameState): String =
-    if (state.servingTeamA)
-        "${state.teamAName} ${state.scoreA}, ${state.teamBName} ${state.scoreB}"
-    else
-        "${state.teamBName} ${state.scoreB}, ${state.teamAName} ${state.scoreA}"
+private fun firstTeamAnnouncement(state: GameState): String =
+    if (state.servingTeamA) "${state.teamAName} ${state.scoreA}"
+    else "${state.teamBName} ${state.scoreB}"
+
+private fun secondTeamAnnouncement(state: GameState): String =
+    if (state.servingTeamA) "${state.teamBName} ${state.scoreB}"
+    else "${state.teamAName} ${state.scoreA}"
 
 @Composable
 fun GameScreen(
@@ -83,10 +86,12 @@ fun GameScreen(
     onSwapServe: () -> Unit,
     onReset: () -> Unit,
     onQuit: () -> Unit,
-    speak: (String) -> Unit
+    speak: (String) -> Unit,
+    speakAppend: (String) -> Unit
 ) {
     val view = LocalView.current
     DisposableEffect(Unit) { view.keepScreenOn = true; onDispose { view.keepScreenOn = false } }
+    val scope = rememberCoroutineScope()
 
     // Timer
     var startTimeMs by remember { mutableLongStateOf(System.currentTimeMillis()) }
@@ -100,24 +105,21 @@ fun GameScreen(
     val elapsed = ((nowMs - startTimeMs) / 1000).toInt()
     val timerText = "%02d:%02d".format(elapsed / 60, elapsed % 60)
 
-    // TTS — score changes are delayed by [announcementDelayMs]; winner fires after the same
-    // delay. Score is suppressed when a winner is declared in the same update so only
-    // "X wins!" is spoken, not a redundant final score on top of it.
+    // TTS — speaks the serving team first, waits [announcementDelayMs], then the other team.
+    // Score is suppressed when a winner is declared so only "X wins!" is spoken.
     var prevScores by remember { mutableStateOf(Pair(state.scoreA, state.scoreB)) }
     LaunchedEffect(state.scoreA, state.scoreB) {
         val current = Pair(state.scoreA, state.scoreB)
         if (prevScores != current) {
-            delay(announcementDelayMs.toLong())
-            if (state.winner == null) speak(scoreAnnouncement(state))
+            if (state.winner == null) {
+                speak(firstTeamAnnouncement(state))
+                delay(announcementDelayMs.toLong())
+                speakAppend(secondTeamAnnouncement(state))
+            }
             prevScores = current
         }
     }
-    LaunchedEffect(state.winner) {
-        state.winner?.let {
-            delay(announcementDelayMs.toLong())
-            speak("$it wins!")
-        }
-    }
+    LaunchedEffect(state.winner) { state.winner?.let { speak("$it wins!") } }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -234,7 +236,13 @@ fun GameScreen(
                     theme = theme,
                     label = "🔊",
                     modifier = Modifier.weight(1f),
-                    onClick = { speak(scoreAnnouncement(state)) }
+                    onClick = {
+                        scope.launch {
+                            speak(firstTeamAnnouncement(state))
+                            delay(announcementDelayMs.toLong())
+                            speakAppend(secondTeamAnnouncement(state))
+                        }
+                    }
                 )
             }
         }
@@ -471,7 +479,7 @@ fun GameScreenPreview() {
                 ),
                 theme = MidnightTheme,
                 onAddPoint = {}, onUndo = {}, onSwapServe = {},
-                onReset = {}, onQuit = {}, speak = {}
+                onReset = {}, onQuit = {}, speak = {}, speakAppend = {}
             )
         }
     }

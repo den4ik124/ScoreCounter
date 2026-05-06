@@ -33,7 +33,8 @@ import com.example.scorecounter.viewmodel.ScoreboardViewModel
 @Composable
 fun ScoreboardApp(
     viewModel: ScoreboardViewModel = viewModel(),
-    speak: (String) -> Unit
+    speak: (String) -> Unit,
+    speakAppend: (String) -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val settings by viewModel.settings.collectAsStateWithLifecycle()
@@ -78,7 +79,8 @@ fun ScoreboardApp(
                         onSwapServe = viewModel::swapServe,
                         onReset = viewModel::resetGame,
                         onQuit = viewModel::restart,
-                        speak = speak
+                        speak = speak,
+                        speakAppend = speakAppend
                     )
                     Screen.SETTINGS -> SettingsScreen(
                         theme = theme,

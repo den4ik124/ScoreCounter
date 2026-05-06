@@ -4,13 +4,15 @@ The app reads the score aloud automatically after every point and on demand.
 
 ## Automatic announcements
 
-Every time the score changes, the app speaks both scores after the configured **announcement delay** (default 1 s). The **serving team is always announced first**, so the "home" score comes first regardless of which team is A or B.
+Every score change triggers a two-part read-out. The **serving team is spoken first**, then after the configured delay (default 1 s) the second team is spoken.
 
-Example: if Team B is serving at 11–14, TTS says *"Eagles 14, Sharks 11"*.
+Example: Team B is serving at 11–14 → TTS says *"Eagles 14"* · 1 s pause · *"Sharks 11"*.
+
+The delay is the pause **between** the two parts, not before the announcement starts.
 
 ## Winner announcement
 
-When a team wins, TTS says *"[Team name] wins!"* after the same announcement delay. When the winning point is scored, the score read-out is suppressed so only the winner announcement is spoken — the two never overlap.
+When a team wins, TTS immediately says *"[Team name] wins!"*. The two-part score read-out is suppressed on the winning point so the win call is never overlapped by a score announcement.
 
 ## Manual read-out
 

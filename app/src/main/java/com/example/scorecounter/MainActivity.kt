@@ -33,7 +33,8 @@ class MainActivity : ComponentActivity() {
             ScoreCounterTheme {
                 ScoreboardApp(
                     viewModel = viewModel,
-                    speak = { text -> tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null) }
+                    speak = { text -> tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null) },
+                    speakAppend = { text -> tts.speak(text, TextToSpeech.QUEUE_ADD, null, null) }
                 )
             }
         }
